@@ -1,5 +1,17 @@
-process.env.NODE_ENV = process.env.NODE_ENV || 'development'
+const { environment } = require('@rails/webpacker')
 
-const environment = require('./environment')
+const webpack = require('webpack')
 
-module.exports = environment.toWebpackConfig()
+environment.plugins.append(
+  'Provide',
+  new webpack.ProvidePlugin({
+    $: 'jquery',
+    jQuery: 'jquery',
+    jQuery: 'jquery',
+    'window.jQuery': 'jquery',
+    Popper: ['popper.js', 'default'],
+    
+  })
+)
+
+module.exports = environment
